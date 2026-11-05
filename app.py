@@ -11,7 +11,7 @@ def home():
     """Renderiza a página inicial."""
     return render_template('index.html')
 
-@app.route('/proxy', methods=['GET', 'POST'])
+@app.route('/proxy', methods=['GET'])
 def proxy_form():
     """Recebe a URL enviada pelo formulário."""
     target_url = request.args.get('url') or request.form.get('url')
@@ -20,20 +20,22 @@ def proxy_form():
     
     return fetch_and_forward(target_url)
 
-@app.route('/<path:target_url>', methods=['GET', 'POST', 'PUT', 'DELETE', 'PATCH'])
+@app.route('/<path:target_url>', methods=['GET'])
 def proxy_path(target_url):
     """Suporta o acesso direto via URL: localhost:5000/http://exemplo.com"""
     return fetch_and_forward(target_url)
 
 def fetch_and_forward(target_url):
-    # Garante o formato com protocolo
+    # Remove espaços extras no início e fim da URL
+    target_url = target_url.strip()
+
+    # Se o usuário não digitou o protocolo (http:// ou https://), adiciona http:// por padrão
     if not target_url.startswith(('http://', 'https://')):
         target_url = 'http://' + target_url
 
     # Extrai o domínio para validar se é um host conectável válido
     parsed = urlparse(target_url)
     domain = parsed.netloc.split(':')[0]
-
 
     # Descarta requisições relativas de sub-recursos mal formatados (ex: xjs, async, shared_dict)
     if not domain or '.' not in domain or domain in ['xjs', 'async', 'shared_dict']:

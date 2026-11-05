@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
 }
 
 body {
@@ -23,8 +23,15 @@ body {
 .card {
     background: #ffffff;
     padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease;
+}
+
+/* Variação para o Card de Bloqueio */
+.card.card-blocked {
+    border-top: 6px solid #ef4444;
+    text-align: center;
 }
 
 h1 {
@@ -32,6 +39,10 @@ h1 {
     color: #1a202c;
     margin-bottom: 12px;
     text-align: center;
+}
+
+.card-blocked h1 {
+    color: #dc2626;
 }
 
 .description {
@@ -54,46 +65,79 @@ code {
     margin-bottom: 30px;
 }
 
+/* Barra de Entrada Estilizada */
 .input-group {
     display: flex;
-    gap: 10px;
+    gap: 12px;
+    background-color: #ffffff;
 }
 
+input[type="text"],
 input[type="url"] {
     flex: 1;
-    padding: 14px 18px;
+    padding: 14px 20px;
     font-size: 1rem;
+    color: #1e293b;
+    background-color: #f8fafc;
     border: 2px solid #e2e8f0;
-    border-radius: 8px;
+    border-radius: 10px;
     outline: none;
-    transition: border-color 0.2s;
+    transition: all 0.25s ease-in-out;
 }
 
+input[type="text"]::placeholder,
+input[type="url"]::placeholder {
+    color: #94a3b8;
+}
+
+input[type="text"]:focus,
 input[type="url"]:focus {
+    background-color: #ffffff;
     border-color: #3b82f6;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
 }
 
-button {
-    padding: 14px 24px;
+button, .btn {
+    padding: 14px 26px;
     font-size: 1rem;
     font-weight: 600;
     background-color: #3b82f6;
     color: #ffffff;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
-    transition: background-color 0.2s;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s ease-in-out;
 }
 
-button:hover {
+button:hover, .btn:hover {
     background-color: #2563eb;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+    transform: translateY(-1px);
 }
 
+button:active, .btn:active {
+    transform: translateY(0);
+}
+
+/* Caixas de Informação */
 .info-box {
     background-color: #f8fafc;
     border: 1px solid #e2e8f0;
-    border-radius: 8px;
+    border-radius: 10px;
     padding: 20px;
+}
+
+.info-box.blocked-info {
+    background-color: #fef2f2;
+    border-color: #fca5a5;
+    margin-bottom: 24px;
+}
+
+.info-box.blocked-info p {
+    color: #991b1b;
+    font-size: 0.95rem;
 }
 
 .info-box h3 {

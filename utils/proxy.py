@@ -38,19 +38,28 @@ def log_access(url, action):
     with open(LOG_FILE, 'w', encoding='utf-8') as f:
         json.dump(logs, f, ensure_ascii=False, indent=4)
 
+def normalize_domain(domain_str):
+    """Remove protocolo, portas, caminhos e o subdomínio 'www.' para comparar domínios limpos."""
+    parsed = urlparse(domain_str if domain_str.startswith(('http://', 'https://')) else 'http://' + domain_str)
+    host = (parsed.netloc or parsed.path.split('/')[0]).lower()
+    host = host.split(':')[0]  # Remove porta se houver
+    if host.startswith('www.'):
+        host = host[4:]
+
+    return host
+
 def is_blocked(target_url):
-    """Verifica se o domínio da URL está contido no blocked.json."""
+    """Verifica se o domínio da URL está contido no blocked.json de forma flexível."""
     blocked_data = load_json(BLOCKED_FILE)
     blocked_list = blocked_data.get("bloqueados", [])
     
-    parsed = urlparse(target_url)
-    domain = parsed.netloc.lower() or parsed.path.split('/')[0].lower()
+    target_domain = normalize_domain(target_url)
     
     for item in blocked_list:
-        item_parsed = urlparse(item if item.startswith(('http://', 'https://')) else 'http://' + item)
-        item_domain = (item_parsed.netloc or item_parsed.path.split('/')[0]).lower()
+        item_domain = normalize_domain(item)
         
-        if domain == item_domain or item_domain in domain:
+        # Bloqueia se os domínios base forem iguais ou se target_domain for um subdomínio do item
+        if target_domain == item_domain or target_domain.endswith('.' + item_domain) or item_domain.endswith('.' + target_domain):
             return True
     return False
 

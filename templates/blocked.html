@@ -9,17 +9,17 @@
 </head>
 <body>
     <div class="container">
-        <div class="card" style="border-top: 6px solid #ef4444; text-align: center;">
-            <h1 style="color: #dc2626;">🚫 Acesso Bloqueado</h1>
+        <div class="card card-blocked">
+            <h1>🚫 Acesso Bloqueado</h1>
             <p class="description">
                 O acesso ao site <strong>{{ url }}</strong> foi bloqueado pelas políticas de segurança do Proxy.
             </p>
-            <div class="info-box" style="background-color: #fef2f2; border-color: #fca5a5; margin-bottom: 20px;">
-                <p style="color: #991b1b; font-size: 0.95rem;">
+            <div class="info-box blocked-info">
+                <p>
                     Este domínio está cadastrado na lista negra (<code>blocked.json</code>).
                 </p>
             </div>
-            <a href="/" style="display: inline-block; padding: 12px 24px; background-color: #3b82f6; color: white; text-decoration: none; border-radius: 8px; font-weight: 600;">Voltar à Página Inicial</a>
+            <a href="/" class="btn">Voltar à Página Inicial</a>
         </div>
     </div>
 </body>

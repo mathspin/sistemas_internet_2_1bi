@@ -13,15 +13,15 @@
             <h1>🌐 Web Proxy HTTP</h1>
             <p class="description">
                 Digite a URL completa do site que deseja acessar através do proxy
-                (exemplo: <code>https://google.com</code> ou <code>https://www.youtube.com</code> ou <code>https://www.lipsum.com/</code>).
+                (exemplo: <code>https://google.com</code> ou <code>https://www.youtube.com</code> ou <code>https://ge.globo.com/rs/futebol/times/gremio/</code> ou <code>https://www.lipsum.com/</code>).
             </p>
 
             <form action="/proxy" method="GET" class="search-form">
                 <div class="input-group">
                     <input 
-                        type="url" 
+                        type="text" 
                         name="url" 
-                        placeholder="https://www.exemplo.com" 
+                        placeholder="https://www.exemplo.com ou exemplo.com" 
                         required 
                         autocomplete="off"
                     >
@@ -32,9 +32,9 @@
             <div class="info-box">
                 <h3>Como funciona:</h3>
                 <ul>
-                    <li> <strong>Modo Transparente:</strong> Repassa sites permitidos normalmente.</li>
-                    <li> <strong>Filtro de Conteúdo:</strong> Substitui palavras configuradas no HTML.</li>
-                    <li> <strong>Bloqueio:</strong> Exibe tela de aviso caso o domínio esteja na lista negra.</li>
+                    <li>🟢 <strong>Modo Transparente:</strong> Repassa sites permitidos normalmente.</li>
+                    <li>🟡 <strong>Filtro de Conteúdo:</strong> Substitui palavras configuradas no HTML.</li>
+                    <li>🔴 <strong>Bloqueio:</strong> Exibe tela de aviso caso o domínio esteja na lista negra.</li>
                 </ul>
             </div>
         </div>
