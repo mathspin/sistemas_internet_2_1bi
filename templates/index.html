@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Proxy - Controle de Conteúdo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>🌐 Web Proxy HTTP</h1>
+            <p class="description">
+                Digite a URL completa do site que deseja acessar através do proxy
+                (exemplo: <code>https://google.com</code> ou <code>https://www.youtube.com</code> ou <code>https://www.lipsum.com/</code>).
+            </p>
+
+            <form action="/proxy" method="GET" class="search-form">
+                <div class="input-group">
+                    <input 
+                        type="url" 
+                        name="url" 
+                        placeholder="https://www.exemplo.com" 
+                        required 
+                        autocomplete="off"
+                    >
+                    <button type="submit">Acessar</button>
+                </div>
+            </form>
+
+            <div class="info-box">
+                <h3>Como funciona:</h3>
+                <ul>
+                    <li> <strong>Modo Transparente:</strong> Repassa sites permitidos normalmente.</li>
+                    <li> <strong>Filtro de Conteúdo:</strong> Substitui palavras configuradas no HTML.</li>
+                    <li> <strong>Bloqueio:</strong> Exibe tela de aviso caso o domínio esteja na lista negra.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

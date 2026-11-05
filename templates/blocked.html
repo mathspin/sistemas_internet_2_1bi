@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso Bloqueado</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <div class="card" style="border-top: 6px solid #ef4444; text-align: center;">
+            <h1 style="color: #dc2626;">🚫 Acesso Bloqueado</h1>
+            <p class="description">
+                O acesso ao site <strong>{{ url }}</strong> foi bloqueado pelas políticas de segurança do Proxy.
+            </p>
+            <div class="info-box" style="background-color: #fef2f2; border-color: #fca5a5; margin-bottom: 20px;">
+                <p style="color: #991b1b; font-size: 0.95rem;">
+                    Este domínio está cadastrado na lista negra (<code>blocked.json</code>).
+                </p>
+            </div>
+            <a href="/" style="display: inline-block; padding: 12px 24px; background-color: #3b82f6; color: white; text-decoration: none; border-radius: 8px; font-weight: 600;">Voltar à Página Inicial</a>
+        </div>
+    </div>
+</body>
+</html>
